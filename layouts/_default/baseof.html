@@ -7,9 +7,9 @@
 
 <body>
     {{- partial "header.html" . -}}
-    <div id="content">
+    <main class="container mx-auto max-w-5xl">
         {{- block "main" . }}{{- end }}
-    </div>
+    </main>
     {{- partial "footer.html" . -}}
 </body>
 
