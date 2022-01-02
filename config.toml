@@ -1,0 +1,14 @@
+name = "Tiberius"
+license = "Apache-2.0"
+licenselink = "https://github.com/nicholasnooney-com/tiberius/blob/main/LICENSE"
+description = "The second Hugo Theme for nicholasnooney.com"
+homepage = "https://github.com/nicholasnooney-com/tiberius"
+tags = []
+features = []
+min_version = "0.41.0"
+
+disableKinds = ["page", "section", "taxonomy", "term"]
+
+[author]
+  name = "Nicholas Nooney"
+  homepage = "https://nicholasnooney.com"
