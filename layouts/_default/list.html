@@ -1,8 +1,19 @@
 {{ define "main" }}
-<article class="prose lg:prose-xl">
-  <h1 class="text-4xl">
-    {{ .Title }}
-  </h1>
-  {{ .Content }}
-</article>
+{{- /* Hugo by default only shows pages underneath the current bundle. This
+snippet gathers all pages of the current bundle and all nested bundles. */ -}}
+
+{{ $pages := slice }}
+{{ $currentSection := .CurrentSection }}
+{{ range where .Site.RegularPages "Section" .Section }}
+{{ if in (.Permalink | string ) $currentSection.RelPermalink }}
+{{ $pages = $pages | append . }}
+{{ end }}
+{{ end }}
+
+{{ $paginator := .Paginate $pages }}
+
+<div class="m-4">
+  {{- partial "post/list-recent.html" $paginator.Pages -}}
+  {{- partial "pagination/bottom.html" $paginator -}}
+</div>
 {{ end }}

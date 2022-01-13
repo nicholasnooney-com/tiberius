@@ -1,0 +1,20 @@
+{{- /* A partial template to render a label. Expects the context argument to be
+a dict with the following keys:
+- context: The Page context which includes this partial.
+- text: The text to include in the label.
+- link: The URL to enter when clicked (optional).
+
+Example usage:
+{{- partial "label.html" (dict "context" . "text" "Label" "link" .RelPermalink) }}
+*/ -}}
+<div>
+  {{ if isset . "link" }}
+  <a href="{{ .link }}">
+    {{ end }}
+    <span class="text-sm rounded-md px-1 py-0.5 bg-shakespeare dark:bg-calypso">
+      {{ .text }}
+    </span>
+    {{ if isset . "link" }}
+  </a>
+  {{ end }}
+</div>

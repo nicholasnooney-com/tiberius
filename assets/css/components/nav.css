@@ -1,0 +1,11 @@
+/* Styles for the navbar at the top of the site. */
+
+.navlink {
+  @apply text-lg;
+  @apply h-full;
+  @apply py-4;
+}
+
+.navlink-active {
+  @apply border-b-2;
+}

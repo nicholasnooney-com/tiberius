@@ -1,8 +1,20 @@
 {{ define "main" }}
-<article class="prose lg:prose-xl">
-  <h1 class="text-4xl">
-    {{ .Title }}
-  </h1>
-  {{ .Content }}
-</article>
+<div class="m-4">
+  <div class="mt-8 flex justify-between">
+    <h1 class="text-3xl font-bold text-noonblue">{{ .Title }}</h1>
+    {{- partial "label.html" (dict "context" . "text" .CurrentSection.Title "link" .CurrentSection.RelPermalink) }}
+  </div>
+  <time class="text-xl" datetime="{{ .Date }}">
+    {{ .Date.Format "2006-01-02" }}
+  </time>
+  <hr class="my-4">
+  <div class="overflow-hidden">
+    {{- with (.Resources.GetMatch "thumbnail") -}}
+    <div class="border-8 border-shakespeare dark:border-calypso my-4 mx-auto md:max-w-xl">
+      {{- partial "image.html" (dict "context" . "sizes" "(min-width: 768px) 1200px, 100vw") -}}
+    </div>
+    {{- end -}}
+    <article class="prose dark:prose-dark max-w-none">{{ .Content }}</article>
+  </div>
+</div>
 {{ end }}

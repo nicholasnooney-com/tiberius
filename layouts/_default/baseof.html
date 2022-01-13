@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.LanguageCode | default 'en-us' }}">
+<html lang="{{ site.LanguageCode | default "en-us" }}">
 
 <head>
     {{- partial "head.html" . -}}
@@ -7,7 +7,7 @@
 
 <body>
     {{- partial "header.html" . -}}
-    <main class="container mx-auto max-w-5xl">
+    <main class="container mx-auto">
         {{- block "main" . }}{{- end }}
     </main>
     {{- partial "footer.html" . -}}

@@ -1,8 +1,6 @@
 {{ define "main" }}
-<article class="prose lg:prose-xl">
-  <h1 class="text-4xl">
-    {{ .Title }}
-  </h1>
-  {{ .Content }}
-</article>
+<div class="m-4">
+  {{- partial "hero.html" . -}}
+  {{- partial "post/list-recent.html" (where .Site.RegularPages "Section" "notes") -}}
+</div>
 {{ end }}

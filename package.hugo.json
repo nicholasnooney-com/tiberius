@@ -1,25 +1,38 @@
 {
-  "name": "tiberius",
-  "version": "1.0.0",
+  "author": "Nicholas Nooney",
+  "bugs": {
+    "url": "https://github.com/nicholasnooney-com/tiberius/issues"
+  },
+  "comments": {
+    "dependencies": {},
+    "devDependencies": {
+      "@tailwindcss/typography": "project",
+      "autoprefixer": "project",
+      "postcss": "project",
+      "postcss-cli": "project",
+      "postcss-import": "project",
+      "tailwindcss": "project"
+    }
+  },
+  "dependencies": {},
   "description": "The second Hugo Theme for nicholasnooney.com",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.0",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.0.2",
+    "tailwindcss": "^3.0.12"
+  },
+  "homepage": "https://github.com/nicholasnooney-com/tiberius#readme",
+  "keywords": [
+    "hugo"
+  ],
+  "license": "Apache-2.0",
+  "name": "tiberius",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nicholasnooney-com/tiberius.git"
   },
-  "keywords": [
-    "hugo"
-  ],
-  "author": "Nicholas Nooney",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/nicholasnooney-com/tiberius/issues"
-  },
-  "homepage": "https://github.com/nicholasnooney-com/tiberius#readme",
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.0",
-    "autoprefixer": "^10.4.1",
-    "postcss": "^8.4.5",
-    "postcss-cli": "^9.1.0",
-    "tailwindcss": "^3.0.8"
-  }
+  "version": "1.0.0"
 }

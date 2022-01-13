@@ -1,0 +1,9 @@
+<div class="flex flex-col space-y-4">
+  {{ $len := (len .) }}
+  {{ range $index, $element := . }}
+  {{- partial "post/summary.html" $element -}}
+  {{ if ne (add $index 1) $len }}
+  <hr>
+  {{ end }}
+  {{ end }}
+</div>

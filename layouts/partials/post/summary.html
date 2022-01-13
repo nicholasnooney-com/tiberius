@@ -1,0 +1,30 @@
+{{- $summaryLeftMargin := "md:ml-28" -}}
+{{- $wrapperLeft := "lg:pl-28" -}}
+{{- with (.Resources.GetMatch "thumbnail") -}}
+{{- $summaryLeftMargin = "md:ml-72" -}}
+{{- $wrapperLeft = "lg:pl-72" -}}
+{{- end -}}
+<article>
+  <time class="md:float-left md:w-28" datetime="{{ .Date }}">
+    {{ .Date.Format "2006-01-02" }}
+  </time>
+  <div class="{{ $wrapperLeft }}">
+    <header class="lg:float-right lg:w-full lg:mb-4">
+      <div class="flex justify-between">
+        <h2 class="hover:underline text-3xl text-noonblue">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </h2>
+        {{- partial "label.html" (dict "context" . "text" .CurrentSection.Title "link" .CurrentSection.RelPermalink) }}
+      </div>
+    </header>
+    {{- with (.Resources.GetMatch "thumbnail") -}}
+    <div
+      class="w-full border-8 border-shakespeare dark:border-calypso my-4 sm:float-left sm:w-40 sm:mr-4 md:ml-28 lg:mt-0 lg:-ml-44">
+      {{- partial "image.html" (dict "context" . "sizes" "(min-width: 768px) 144px, 100vw") -}}
+    </div>
+    {{- end -}}
+  </div>
+  {{- with .Summary -}}
+  <div class="mt-4 max-w-3xl {{ $summaryLeftMargin }}">{{ . }}</div>
+  {{- end -}}
+</article>

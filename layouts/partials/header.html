@@ -1,0 +1,17 @@
+<header class="container mx-auto h-12">
+  <nav class="mx-auto">
+    <ul class="flex flex-row justify-center items-center space-x-8 h-full">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+      {{ $classes := slice "navlink" }}
+      {{ if or ($currentPage.IsMenuCurrent "main" .) (and (.Page) (and (.Page.IsAncestor $currentPage) (not .Page.IsHome))) }}
+      {{ $classes = $classes | append "navlink-active" }}
+      {{ end }}
+      <li class='{{ delimit $classes " " }}'>
+        <a href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </nav>
+  <hr class="mb-4" />
+</header>

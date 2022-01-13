@@ -1,11 +1,26 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description"
+  content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/twitter_cards.html" . }}
+{{ template "_internal/schema.html" . }}
+
+<!-- Hugo Version Number -->
+{{ hugo.Generator -}}
+
+{{- with ($.Param "favicon") }}
+<link rel='icon' type='image/png' href="{{ . | absURL }}" />
+{{- end -}}
+
+<!-- Site Styles -->
 {{/* Site Styles */}}
-{{ $options := dict "inlineImports" true }}
-{{ $styles := resources.Get "css/styles.css" }}
-{{ $styles = $styles | resources.PostCSS $options }}
+{{ $styles := resources.Get "css/tw.css" }}
+{{ $styles = $styles | resources.PostCSS }}
 {{ if  hugo.IsProduction  }}
 {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
 {{ end }}
 <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
+
+<title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}</title>

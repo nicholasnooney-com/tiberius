@@ -1,0 +1,45 @@
+{{- /* A partial template to render a responsive image. Expects the context
+argument to be a dictionary with the following keys:
+- context: The path to the image file. Must be a page resource
+(https://gohugo.io/content-management/page-resources/).
+- sizes (optional): Content to pass to the sizes attribute of the image.
+
+Example usage:
+{{- partial "image.html" (dict "context" (.Resources.GetMatch "thumbnail") "sizes" "100vw") -}}
+
+Below are some good values of the sizes attribute:
+
+Thumbnails in post summaries:
+sizes="(min-width: 768px) 160px, 100vw"
+
+Images inside a post (default):
+sizes="(min-width: 768px) 768px, 100vw"
+*/ -}}
+
+{{ $src_set := (print .context.RelPermalink " " .context.Width "w") }}
+
+{{ if ge .context.Width "160"}}
+{{ $tiny := .context.Resize "160x" }}
+{{ $src_set = (print $src_set ", " $tiny.RelPermalink " 160w") }}
+{{ end }}
+
+{{ if ge .context.Width "300"}}
+{{ $small := .context.Resize "300x" }}
+{{ $src_set = (print $src_set ", " $small.RelPermalink " 300w") }}
+{{ end }}
+
+{{ if ge .context.Width "640"}}
+{{ $medium := .context.Resize "640x" }}
+{{ $src_set = (print $src_set ", " $medium.RelPermalink " 640w") }}
+{{ end }}
+
+{{ if ge .context.Width "768"}}
+{{ $large := .context.Resize "768x" }}
+{{ $src_set = (print $src_set ", " $large.RelPermalink " 768w") }}
+{{ end }}
+
+{{ $sizes := .sizes | default "(min-width: 768px) 768px, 100vw" }}
+
+<figure>
+  <img srcset="{{ $src_set }}" sizes='{{ $sizes }}' src="{{ .context.RelPermalink }}" alt="{{ .context.Name }}" />
+</figure>

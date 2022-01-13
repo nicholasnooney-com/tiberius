@@ -3,14 +3,10 @@ const typography = require('@tailwindcss/typography');
 
 const themeDir = __dirname;
 
+
 module.exports = {
-  purge: {
-    enabled: process.env.HUGO_ENVIRONMENT === 'production',
-    content: [
-      themeDir + '/layouts/**/*.html',
-    ],
-  },
-  darkMode: 'media', // or 'media' or 'class'
+  content: [themeDir + '/layouts/**/*.html'],
+  darkMode: 'media', // 'media' or 'class'
   theme: {
     extend: {
       colors: {
