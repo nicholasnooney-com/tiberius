@@ -1,0 +1,58 @@
+{{- /* Hugo's _internal/pagination.html template styled for Tailwind CSS */ -}}
+{{ $pag := . }}
+{{- if gt $pag.TotalPages 1 -}}
+<div class="">
+  <hr class="mt-4">
+  <nav class="flex items-center">
+    <div class="flex flex-1 justify-center pt-3">
+      <button class="h-8 flex items-center mr-auto {{ if not $pag.HasPrev }}textt-noonblue{{ end }}"
+        {{ if not $pag.HasPrev }}disabled{{ end }}>
+        {{ if $pag.HasPrev }}<a class="flex items-center" href="{{ $pag.Prev.URL }}">{{ end }}
+          <i class="w-5 h-5 mr-2" data-feather="arrow-left"></i>
+          <p>Previous</p>
+          {{ if $pag.HasPrev }}
+        </a>{{ end }}
+      </button>
+    </div>
+    <div class="flex flex-1 justify-center">
+      <ul class="flex">
+        {{- $ellipsed := false -}}
+        {{- $shouldEllipse := false -}}
+        {{- range $pag.Pagers -}}
+        {{- $right := sub .TotalPages .PageNumber -}}
+        {{- $showNumber := or (le .PageNumber 3) (eq $right 0) -}}
+        {{- $showNumber := or $showNumber (le .TotalPages 5) -}}
+        {{- $showNumber := or $showNumber (and (gt .PageNumber (sub $pag.PageNumber 2)) (lt .PageNumber (add $pag.PageNumber 2))) -}}
+        {{- if $showNumber -}}
+        {{- $ellipsed = false -}}
+        {{- $shouldEllipse = false -}}
+        {{- else -}}
+        {{- $shouldEllipse = not $ellipsed -}}
+        {{- $ellipsed = true -}}
+        {{- end -}}
+        {{- if $showNumber -}}
+        <li class="h-12 w-12 pt-3 px-2 flex items-stretch {{ if eq . $pag }}border-t-4 border-current{{ end }}">
+          <a class="flex flex-1 justify-center items-center" href="{{ .URL }}">
+            {{ .PageNumber }}
+          </a>
+        </li>
+        {{- else if $shouldEllipse -}}
+        <li class="h-12 w-12 pt-3 px-2 flex justify-center items-center">
+          <span>&nbsp;&hellip;&nbsp;</span>
+        </li>
+        {{- end -}}
+        {{- end -}}
+      </ul>
+    </div>
+    <div class="flex flex-1 justify-center pt-3">
+      <button class="h-8 flex items-center ml-auto {{ if not $pag.HasNext }}text-noonblue{{ end }}"
+        {{ if not $pag.HasNext }}disabled{{ end }}>
+        {{ if $pag.HasNext }}<a class="flex items-center" href="{{ $pag.Next.URL }}">{{ end }}
+          <p>Next</p>
+          <i class="w-5 h-5 ml-2" data-feather="arrow-right"></i>
+          {{ if $pag.HasNext }}</a>{{ end }}
+      </button>
+    </div>
+  </nav>
+</div>
+{{- end -}}

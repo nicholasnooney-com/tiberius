@@ -1,0 +1,13 @@
+{{- $saved := 0 -}}
+[
+  {{- range where .Site.RegularPages "Params.hideSearch" "!=" true -}}
+    {{- $entry := dict "uri" .RelPermalink "title" .Title -}}
+    {{- $entry = merge $entry (dict "content" (.Plain | htmlUnescape)) -}}
+    {{- $entry = merge $entry (dict "description" .Description) -}}
+    {{- $entry = merge $entry (dict "categories" .Params.categories) -}}
+    {{- $entry = merge $entry (dict "time" .Date) -}}
+    {{- if gt $saved 0 -}} , {{- end -}}
+    {{- $entry | jsonify -}}
+    {{- $saved = (add $saved 1)}}
+  {{- end -}}
+]

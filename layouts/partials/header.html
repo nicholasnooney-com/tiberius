@@ -1,17 +1,29 @@
-<header class="container mx-auto h-12">
-  <nav class="mx-auto">
-    <ul class="flex flex-row justify-center items-center space-x-8 h-full">
-      {{ $currentPage := . }}
-      {{ range .Site.Menus.main }}
-      {{ $classes := slice "navlink" }}
-      {{ if or ($currentPage.IsMenuCurrent "main" .) (and (.Page) (and (.Page.IsAncestor $currentPage) (not .Page.IsHome))) }}
-      {{ $classes = $classes | append "navlink-active" }}
-      {{ end }}
-      <li class='{{ delimit $classes " " }}'>
-        <a href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
-      </li>
-      {{ end }}
-    </ul>
-  </nav>
-  <hr class="mb-4" />
+<header class="container mx-auto border-gray-400 mb-8">
+  <div class="mx-8 flex justify-between items-center flex-wrap lg:flex-nowrap">
+    <nav>
+      <ul class="flex flex-row justify-center items-center space-x-8">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.main }}
+        {{ $classes := slice "text-lg h-auto py-3 border-b-2" }}
+        {{ if or ($currentPage.IsMenuCurrent "main" .) (and (.Page) (and (.Page.IsAncestor $currentPage) (not .Page.IsHome))) }}
+        {{ $classes = $classes | append "border-gray-400" }}
+        {{ end }}
+        <li class='{{ delimit $classes " " }}'>
+          <a class="block" href="{{ .URL }}" title="{{ .Title }}">{{ .Name }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    </nav>
+    <form id="header-search" class="flex justify-center border-b-2 border-gray-400 py-3" role="search">
+      <label for="header-search-input">
+        <i class="w-7 h-7 p-0.5 cursor-pointer" data-feather="search"></i>
+      </label>
+      <input type="text" id="header-search-input"
+        class="w-0 p-0 m-0 border-0 focus:ring-0 motion-safe:transition-width motion-reduce:w-80 motion-reduce:wl-2" />
+      <button type="reset">
+        <i id="header-search-clear" class="w-7 h-7 p-0.5 cursor-pointer hidden invisible" data-feather="x"></i>
+      </button>
+    </form>
+  </div>
+  <hr class="mb-4 border-inherit" />
 </header>

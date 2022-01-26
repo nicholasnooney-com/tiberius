@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ `<!-- page/searchresults.html -->` | safeHTML }}
+<template id="search-result-template" hidden>
+  <article>
+    <div class="flex justify-between">
+      <h2 class="sr-title text-noonblue font-bold"><a class="sr-titlelink"></a></h2>
+      <time class="sr-time"></time>
+    </div>
+    <p class="sr-summary ml-4"></p>
+  </article>
+</template>
+<div id="search-result-container" class="mx-8"></div>
+{{ end }}
+{{ define "footerfiles" }}
+{{ $sr_script := resources.Get "js/searchresults.ts" | js.Build }}
+<script src="{{ $sr_script.RelPermalink }}" defer></script>
+{{ end }}

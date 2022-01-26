@@ -15,12 +15,21 @@
 {{- end -}}
 
 <!-- Site Styles -->
-{{/* Site Styles */}}
 {{ $styles := resources.Get "css/tw.css" }}
 {{ $styles = $styles | resources.PostCSS }}
 {{ if  hugo.IsProduction  }}
 {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
+{{ else if .Site.IsServer }}
+{{/*  https://github.com/gohugoio/hugo/issues/8343  */}}
+{{ $styles = $styles | resources.ExecuteAsTemplate (printf "tailwind.dev.%v.css" now.UnixMilli) .}}
 {{ end }}
 <link href="{{ $styles.RelPermalink }}" rel="stylesheet" />
 
-<title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}</title>
+<!-- Site Scripts -->
+{{ $main_script := resources.Get "js/main.ts" | js.Build }}
+{{ if  hugo.IsProduction  }}
+{{ $main_script = $main_script | minify | fingerprint }}
+{{ end }}
+<script src="{{ $main_script.RelPermalink }}" defer></script>
+
+<title>{{ site.Title }}{{ if not .IsHome }} | {{ .Title }}{{ end }}</title>

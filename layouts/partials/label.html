@@ -7,11 +7,11 @@ a dict with the following keys:
 Example usage:
 {{- partial "label.html" (dict "context" . "text" "Label" "link" .RelPermalink) }}
 */ -}}
-<div>
+<div class="flex rounded-md bg-noonblue align-middle">
   {{ if isset . "link" }}
   <a href="{{ .link }}">
     {{ end }}
-    <span class="text-sm rounded-md px-1 py-0.5 bg-shakespeare dark:bg-calypso">
+    <span class="text-sm m-1 text-gray-50">
       {{ .text }}
     </span>
     {{ if isset . "link" }}

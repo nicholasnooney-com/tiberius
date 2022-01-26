@@ -12,3 +12,30 @@ disableKinds = ["page", "section", "taxonomy", "term"]
 [author]
   name = "Nicholas Nooney"
   homepage = "https://nicholasnooney.com"
+
+[module]
+  # Folders in this repo that should be mounted to Hugo's Virtual Filesystem.
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+
+  # Dependencies that should be mounted to Hugo's Virtual Filesystem.
+  [[module.imports]]
+    path = "github.com/nicholasnooney-com/hugolibs/feather-icons"
+    [[module.imports.mounts]]
+      source = "dist"
+      target = "assets/js/modules/feather-icons"
+  [[module.imports]]
+    path = "github.com/nicholasnooney-com/hugolibs/lunr"
+    [[module.imports.mounts]]
+      source = "."
+      target = "assets/js/modules/lunr"

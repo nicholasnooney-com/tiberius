@@ -1,6 +1,9 @@
 {{ define "main" }}
 <div class="m-4">
   {{- partial "hero.html" . -}}
-  {{- partial "post/list-recent.html" (where .Site.RegularPages "Section" "notes") -}}
+  <div class="mb-8">
+    {{ .Content }}
+  </div>
+  {{- partial "post/list-recent.html" (where .Site.RegularPages "Section" "topics") -}}
 </div>
 {{ end }}
