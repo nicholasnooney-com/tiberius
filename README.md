@@ -49,6 +49,14 @@ particular page from the index, add the following to the page's front matter:
 hideSearch: true
 ```
 
+#### Favicons (Optional)
+
+This theme expects favicons to be placed in the `static/` folder of your site,
+with a variety of filenames.
+
+Use <https://realfavicongenerator.net/> to convert a favicon image into the
+required formats.
+
 ### Develop
 
 ```shell

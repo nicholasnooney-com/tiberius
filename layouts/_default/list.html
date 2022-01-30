@@ -5,7 +5,7 @@ snippet gathers all pages of the current bundle and all nested bundles. */ -}}
 
 {{ $pages := slice }}
 {{ $currentSection := .CurrentSection }}
-{{ range where .Site.RegularPages "Section" .Section }}
+{{ range where (where .Site.RegularPages  "Params.hideSearch" "!=" true) "Section" .Section }}
 {{ if in (.Permalink | string ) $currentSection.RelPermalink }}
 {{ $pages = $pages | append . }}
 {{ end }}
@@ -14,6 +14,9 @@ snippet gathers all pages of the current bundle and all nested bundles. */ -}}
 {{ $paginator := .Paginate $pages }}
 
 <div class="m-4">
+  <div class="mb-8">
+    {{ .Content }}
+  </div>
   {{- partial "post/list-recent.html" $paginator.Pages -}}
   {{- partial "pagination/bottom.html" $paginator -}}
 </div>

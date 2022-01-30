@@ -4,6 +4,6 @@
   <div class="mb-8">
     {{ .Content }}
   </div>
-  {{- partial "post/list-recent.html" (where .Site.RegularPages "Section" "topics") -}}
+  {{- partial "post/list-recent.html" (where .Site.RegularPages  "Params.hideSearch" "!=" true) -}}
 </div>
 {{ end }}
