@@ -7,6 +7,9 @@ a dict with the following keys:
 Example usage:
 {{- partial "label.html" (dict "context" . "text" "Label" "link" .RelPermalink) }}
 */ -}}
+{{ if site.IsServer }}
+{{ `<!-- partials/label.html -->` | safeHTML }}
+{{ end }}
 <div class="flex rounded-md bg-noonblue align-middle">
   {{ if isset . "link" }}
   <a href="{{ .link }}">

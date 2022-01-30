@@ -1,3 +1,6 @@
+{{ if site.IsServer }}
+{{ `<!-- partials/post/list-recent.html -->` | safeHTML }}
+{{ end }}
 <div class="flex flex-col space-y-4">
   {{ $len := (len .) }}
   {{ range $index, $element := . }}

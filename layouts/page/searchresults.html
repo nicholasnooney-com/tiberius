@@ -1,5 +1,7 @@
 {{ define "main" }}
+{{ if site.IsServer }}
 {{ `<!-- page/searchresults.html -->` | safeHTML }}
+{{ end }}
 <template id="search-result-template" hidden>
   <article>
     <div class="flex justify-between">

@@ -1,4 +1,7 @@
 {{- /* Hugo's _internal/pagination.html template styled for Tailwind CSS */ -}}
+{{ if site.IsServer }}
+{{ `<!-- partials/pagination/bottom.html -->` | safeHTML }}
+{{ end }}
 {{ $pag := . }}
 {{- if gt $pag.TotalPages 1 -}}
 <div class="">
@@ -50,7 +53,8 @@
         {{ if $pag.HasNext }}<a class="flex items-center" href="{{ $pag.Next.URL }}">{{ end }}
           <p>Next</p>
           <i class="w-5 h-5 ml-2" data-feather="arrow-right"></i>
-          {{ if $pag.HasNext }}</a>{{ end }}
+          {{ if $pag.HasNext }}
+        </a>{{ end }}
       </button>
     </div>
   </nav>

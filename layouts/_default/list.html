@@ -1,5 +1,7 @@
 {{ define "main" }}
+{{ if site.IsServer }}
 {{ `<!-- _default/list.html -->` | safeHTML }}
+{{ end }}
 {{- /* Hugo by default only shows pages underneath the current bundle. This
 snippet gathers all pages of the current bundle and all nested bundles. */ -}}
 

@@ -24,7 +24,7 @@
 {{ $styles = $styles | resources.PostCSS }}
 {{ if  hugo.IsProduction  }}
 {{ $styles = $styles | minify | fingerprint | resources.PostProcess }}
-{{ else if .Site.IsServer }}
+{{ else if site.IsServer }}
 {{/*  https://github.com/gohugoio/hugo/issues/8343  */}}
 {{ $styles = $styles | resources.ExecuteAsTemplate (printf "tailwind.dev.%v.css" now.UnixMilli) .}}
 {{ end }}
