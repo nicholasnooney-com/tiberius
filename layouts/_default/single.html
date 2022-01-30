@@ -1,5 +1,7 @@
 {{ define "main" }}
+{{ if site.IsServer }}
 {{ `<!-- _default/single.html -->` | safeHTML }}
+{{ end }}
 <div class="m-4">
   <h1 class="text-3xl font-bold text-noonblue">{{ .Title }}</h1>
   <div class="flex justify-between">
@@ -8,9 +10,20 @@
     </time>
     {{- partial "label.html" (dict "context" . "text" .CurrentSection.Title "link" .CurrentSection.RelPermalink) }}
   </div>
-  <hr class="my-4">
-  <div class="mt-8 overflow-hidden">
-    <article class="prose mx-auto">{{ .Content }}</article>
+  <hr class="mt-4 mb-2 md:mb-8">
+  <div class="grid grid-cols-3 gap-2 grid-flow-row-dense">
+    {{ if .Params.toc }}
+    <aside class="col-span-3 md:col-span-1 md:col-start-3">
+      <details class="prose">
+        <summary class="cursor-pointer">
+          <h4 class="inline ml-2">Table of Contents</h4>
+        </summary>
+        {{.TableOfContents}}
+      </details>
+      <hr class="my-2">
+    </aside>
+    {{ end }}
+    <article class="col-span-3 md:col-span-2 prose mx-auto">{{ .Content }}</article>
   </div>
 </div>
 {{ end }}
