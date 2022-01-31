@@ -9,8 +9,8 @@ Tiberius: The second Hugo Theme for nicholasnooney.com.
 
 ## Dependencies
 
-Node v14+
-Hugo v88+
+- Node v14+
+- Hugo v88+
 
 ## Usage
 
